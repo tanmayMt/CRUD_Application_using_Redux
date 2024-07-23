@@ -1,10 +1,18 @@
 
+import { Routes, Route } from "react-router-dom";
+import Posts from "./components/Posts";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   return (
+   <>
     <div className="container">
-      <h1>Test</h1>
+      <Routes>
+        <Route path="/" element={<Posts />} />
+        <Route path="/createpost" element={<CreatePost />} />
+      </Routes>
     </div>
+   </>
   );
 }
 
