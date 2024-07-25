@@ -9,7 +9,7 @@ function App() {
     <div className="container">
       <Routes>
         <Route path="/" element={<Posts />} />
-        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/create_post" element={<CreatePost />} />
       </Routes>
     </div>
    </>
