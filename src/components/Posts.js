@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Posts = () => {
+  const [id, setId] = useState("");
+  const [textBody, setTextBody] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();  
+    //function
+  const handleFetchData = (e) => {
+    e.preventDefault();
+    console.log(id);
+
+  };
   return (
     <>
       <div className="row mt-4 d-flex align-items-center justify-content-center">
@@ -12,22 +24,22 @@ const Posts = () => {
               </label>
               <input
                 type="number"
-                
-                
+                value={id}
+                onChange={(e) => setId(e.target.value)}                
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
               />
             </div>
             <button
-              
+              onClick={handleFetchData}
               type="submit"
               className="btn btn-primary"
             >
               Fetch Post
             </button>
             <button
-              
+              onClick={() => navigate("/createpost")}
               type="button"
               className="btn btn-warning ms-4"
             >
