@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getPost } from "./../redux/features/PostSlice";
+import Spinner from "./Spinner";
 
 const Posts = () => {
   const [id, setId] = useState("");
   const [textBody, setTextBody] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();  
+  const { loading, post} = useSelector((state) => ({
+    ...state.app,
+  }));
     //function
   const handleFetchData = (e) => {
     e.preventDefault();
@@ -53,7 +57,25 @@ const Posts = () => {
             </button>
           </form>
         </div>
-      </div> 
+      </div>
+      <div className="container">
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+           {post.length > 0 && (
+            <div className="card mt-4">
+                  <div className="card-body">
+                    <h5 className="card-title">{post[0].title}</h5>
+                  </div>
+            </div>
+           )
+           }
+          </>
+        )
+      }
+      </div>
+
     </>
   )
 }
