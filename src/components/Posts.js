@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getPost } from "./../redux/features/PostSlice";
+import { deletePost, getPost } from "./../redux/features/PostSlice";
 import Spinner from "./Spinner";
 
 const Posts = () => {
   const [id, setId] = useState("");
-  const [textBody, setTextBody] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();  
   const { loading, post} = useSelector((state) => ({
@@ -22,6 +22,13 @@ const Posts = () => {
       dispatch(getPost({ id }));
       setId("");
     }
+  };
+    
+  //delete handler
+  const handleDelete = ({ id }) => {
+    dispatch(deletePost({ id: post[0].id }));
+    window.alert("Post Deleted !");
+    window.location.reload();
   };
   return (
     <>
@@ -67,6 +74,20 @@ const Posts = () => {
             <div className="card mt-4">
                   <div className="card-body">
                     <h5 className="card-title">{post[0].title}</h5>
+                      <div className="d-flex align-items-end justify-content-end">
+                        <button
+                          className="btn btn-primary"
+
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-danger ms-4"
+                          onClick={handleDelete}
+                        >
+                          Delete
+                        </button>
+                      </div>
                   </div>
             </div>
            )
