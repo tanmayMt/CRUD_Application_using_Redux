@@ -9,11 +9,10 @@ function App() {
     <div className="container">
       <Routes>
         <Route path="/" element={<Posts />} />
-        <Route path="/create_post" element={<CreatePost />} />
+        <Route path="/createpost" element={<CreatePost />} />
       </Routes>
     </div>
    </>
   );
 }
-
 export default App;
